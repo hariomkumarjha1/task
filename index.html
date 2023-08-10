@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task2</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    
+</head>
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins',sans-serif;
+}
+body
+{
+    justify-content: space-between;
+    min-height: 100vh;
+    background: #07f01e;
+}
+.container
+{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+
+}
+.list
+{
+    background: #2315e189;
+    width: 650px;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 0 0 128px 0 rgba(67, 39, 206, 0.839),0 32px 64px -48px rgba(0,0,0,0.5);
+}
+.wrapper
+{
+    background: #fa2205c1;
+    width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 0 128px 0 rgba(9, 6, 17, 0.914),0 32px 64px -48px rgba(0,0,0,0.5);
+
+}
+.form 
+{
+    padding: 25px 30px;
+}
+.form header{
+    font-size: 25px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2114d4;
+}
+.form form{
+    margin: 20px 0;
+}
+
+.form .name-details
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.form .field label{
+    margin-bottom: 2px;
+}
+.form .field
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;   
+}
+.form .field input{
+    outline: none;
+}
+.form .input input:focus,
+.form .input input:valid{
+  border-color:rgba(97, 38, 92, 0);
+}
+.form .input input{
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #07f53bc8;
+    border-radius: 5px;
+
+}
+.form .image input{
+    font-size: 17px;
+}
+.form .button input{
+    margin-top: 13px;
+    height: 45px;
+    border: none;
+    font-size: 17px;
+    font-weight: 400;
+    background:rgb(243, 32, 43);
+    color: #1215ccad;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#task-list
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+th, td{
+    padding: 10px;
+}
+button{
+    background-color: rgb(14, 122, 48);
+    color: rgba(178, 183, 21, 0.568);
+    padding: 5px;
+}
+</style>
+<body>
+<div class="container">
+    <div class="wrapper">
+        <section class="form">
+            <header>Task assign form</header>
+            
+            <form action="#" id="form">
+                <div class="name-details">
+                    <div class="field input">
+                        <label for="">User Name</label>
+                        <input type="text" id="name" required >
+                    </div>
+                   <div class="field input">
+                        <label for="">Task name</label>
+                        <input type="text" id="tname" required>
+                    </div>
+                    <div class="field input">
+                        <label for="">Task description</label>
+                        <textarea id="tdesc" required></textarea>
+                    </div>
+                    <div class="field button">
+                        <input type="submit" value="Assign">
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+    <br>
+    </div>
+    <div class="container">
+       <div id="task-list" class="list">
+      <h2> Pending Tasks </h2>
+      
+    </div>
+    </div>
+    <script>function addTask() {
+        event.preventDefault();
+    
+       
+        
+        var Name = document.getElementById("name").value;
+        var taskName = document.getElementById("tname").value;
+        var taskDescription = document.getElementById("tdesc").value;
+    
+        
+        var taskElement = document.createElement("table");
+        taskElement.className = "task";
+    
+        
+        var taskContent = 
+        `
+        <tr>
+        <th>User Name </th>
+         <th>Task Name </th>
+         <th>Task description</th>
+         
+         
+         </tr>
+            <tr>
+            <td>${Name} </td>
+            <td>${taskName}  </td>
+            <td>${taskDescription}</td>
+            
+            <td><button class="delete-task">Done</button></td>
+            </tr>
+        `;
+    
+        taskElement.innerHTML = taskContent;
+    
+    
+        var taskList = document.getElementById("task-list");
+        taskList.appendChild(taskElement);
+    
+    
+        document.getElementById("form").reset();
+    
+     
+        var deleteButton = taskElement.getElementsByClassName("delete-task")[0];
+        deleteButton.addEventListener("click", function() {
+            taskList.removeChild(taskElement);
+        });
+    }
+    
+    
+    document.getElementById("form").addEventListener("submit", addTask);</script>
+</body>
+</html>
